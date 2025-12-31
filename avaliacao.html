@@ -220,43 +220,56 @@
     let tentativas = localStorage.getItem('tent_lideranca') || 0;
 
     function calcularNota() {
-        const selecionadas = document.querySelectorAll('input[type="radio"]:checked');
-        if (selecionadas.length < 20) {
-            alert("Atenção! Você precisa responder todas as 20 questões para finalizar.");
-            return;
-        }
+    function calcularNota() {
+    const selecionadas = document.querySelectorAll('input[type="radio"]:checked');
+    if (selecionadas.length < 20) {
+        alert("Responda todas as 20 questões antes de finalizar.");
+        return;
+    }
 
-        let pontos = 0;
-        selecionadas.forEach(res => { pontos += parseInt(res.value); });
-        const notaFinal = (pontos / 20) * 10;
+    let pontos = 0;
+    selecionadas.forEach(res => { pontos += parseInt(res.value); });
+    const notaFinal = (pontos / 20) * 10;
 
-        tentativas++;
-        localStorage.setItem('tent_lideranca', tentativas);
-        const resDiv = document.getElementById('resultadoArea');
-        resDiv.style.display = "block";
+    tentativas++;
+    localStorage.setItem('tent_lideranca', tentativas);
 
-        if (notaFinal >= 7) {
-            resDiv.className = "parabens-msg";
+    const resDiv = document.getElementById('resultadoArea');
+    resDiv.style.display = "block";
+
+    if (notaFinal >= 7) {
+        // SUCESSO: Envia para personalizar.html
+        resDiv.className = "parabens-msg";
+        resDiv.innerHTML = `
+            <h3>Parabéns! Sua nota foi ${notaFinal.toFixed(1)}</h3>
+            <p>Você foi aprovado na Qualificação Ministerial.</p>
+            <br>
+            <button type="button" onclick="window.location.href='personalizar.html'" 
+                style="padding:20px; background:#00334d; color:white; border:none; cursor:pointer; font-weight:bold; font-size:18px; width:100%;">
+                CLIQUE AQUI PARA PREENCHER SEU CERTIFICADO
+            </button>`;
+        document.getElementById('btnFinalizar').style.display = "none";
+    } else {
+        // ERRO: Mostra PIX e envia para liberacao.html
+        resDiv.className = "erro-msg";
+        if (tentativas >= 3) {
             resDiv.innerHTML = `
-                <h3>Excelente! Nota: ${notaFinal.toFixed(1)}</h3>
-                <p>Você atingiu o aproveitamento necessário para a qualificação.</p>
-                <button onclick="window.location.href='personalizar.html'" style="padding:15px; background:var(--azul-petroleo); color:white; border:none; width:100%; cursor:pointer; font-weight:bold; font-size:16px;">IR PARA EMISSÃO DE CERTIFICADO</button>`;
-            document.getElementById('btnFinalizar').style.display = "none";
+                Que pena! Você atingiu o limite de tentativas gratuitas.<br><br>
+                <b>Chave PIX: escolateologicavance@gmail.com</b><br>
+                Envie o comprovante para liberação (Senha: curso321A)<br><br>
+                <button type="button" onclick="window.location.href='liberacao.html'"
+                    style="background:none; border:none; color:#c62828; font-weight:bold; cursor:pointer; text-decoration:underline;">
+                    JÁ PAGOU? CLIQUE AQUI PARA INSERIR A SENHA
+                </button>`;
+            document.getElementById('btnFinalizar').disabled = true;
+            document.getElementById('btnFinalizar').style.opacity = "0.5";
         } else {
-            resDiv.className = "erro-msg";
-            if (tentativas < 3) {
-                resDiv.innerHTML = `Nota: ${notaFinal.toFixed(1)}. Estude mais os materiais e tente novamente!`;
-            } else {
-                resDiv.innerHTML = `
-                    Limite de tentativas atingido.<br>
-                    <b>PIX: escolateologicavance@gmail.com</b><br>
-                    Liberação de Reteste (Senha: curso321A)<br><br>
-                    <a href="liberacao.html" style="color:#c62828; font-weight:bold;">JÁ PAGOU? CLIQUE AQUI PARA INSERIR SENHA</a>`;
-                document.getElementById('btnFinalizar').disabled = true;
-                document.getElementById('btnFinalizar').style.opacity = "0.5";
-            }
+            resDiv.innerHTML = `Nota: ${notaFinal.toFixed(1)}. Você ainda tem uma tentativa gratuita!`;
         }
-        window.scrollTo(0, document.body.scrollHeight);
+    }
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
     }
 </script>
 
