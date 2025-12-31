@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificado - Faculdade Sincro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root { --azul: #00334d; --ouro: #c5a059; }
+        body { margin: 0; padding: 0; background: #f0f0f0; display: flex; justify-content: center; font-family: 'Times New Roman', serif; }
+
+        /* FORMATO A4 PAISAGEM */
+        #certificado-area {
+            width: 1123px;
+            height: 794px;
+            background: white;
+            padding: 40px;
+            box-sizing: border-box;
+            border: 20px solid var(--azul);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .moldura-interna {
+            border: 2px solid var(--ouro);
+            height: 100%; width: 100%;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+        }
+
+        .cabecalho h1 { font-size: 55px; color: var(--azul); text-transform: uppercase; margin: 0; letter-spacing: 12px; }
+        .cabecalho p { font-size: 22px; color: var(--azul); margin: 5px 0; font-weight: bold; }
+
+        .texto-corpo { font-size: 26px; color: #333; margin: 30px 0; max-width: 85%; line-height: 1.6; }
+
+        /* CAMPO DO NOME */
+        #nomeFinal {
+            font-size: 58px;
+            color: var(--azul);
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            border-bottom: 2px solid var(--ouro);
+            margin: 15px 0;
+            padding: 0 40px;
+            min-height: 70px;
+        }
+
+        .assinaturas { display: flex; justify-content: space-around; width: 100%; margin-top: 50px; }
+        .assinatura-bloco { border-top: 1px solid #333; width: 280px; padding-top: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+
+    <div id="certificado-area">
+        <div class="moldura-interna">
+            <div class="cabecalho">
+                <h1>CERTIFICADO</h1>
+                <p>FACULDADE SINCRO</p>
+            </div>
+
+            <div class="texto-corpo">Certificamos para os devidos fins que o(a) formando(a):</div>
+
+            <div id="nomeFinal">Aguardando...</div>
+
+            <div class="texto-corpo">
+                concluiu com aproveitamento a <b>Qualificação Ministerial em Liderança Pastoral</b>, 
+                cumprindo todas as exigências acadêmicas e teológicas desta instituição.
+            </div>
+
+            <div style="font-size: 18px; color: #666;">
+                Concedido em: <span id="dataAtual"></span> | Carga Horária: 60 Horas
+            </div>
+
+            <div class="assinaturas">
+                <div class="assinatura-bloco"><b>Reitoria Acadêmica</b><br>Faculdade Sincro</div>
+                <div class="assinatura-bloco"><b>Coordenação Ministerial</b><br>Qualificação Pastoral</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. PUXA O NOME DA MEMÓRIA
+        const nomeSalvo = localStorage.getItem('nome_certificado');
+        
+        // 2. SÓ ESCREVE SE O NOME EXISTIR, SENÃO USA "FORMANDO"
+        document.getElementById('nomeFinal').innerText = nomeSalvo || "Líder Cristão";
+        document.getElementById('dataAtual').innerText = new Date().toLocaleDateString('pt-br');
+
+        // 3. FUNÇÃO DE GERAÇÃO DO PDF
+        function baixarPDF() {
+            const element = document.getElementById('certificado-area');
+            const opt = {
+                margin: 0,
+                filename: 'Certificado_Lideranca_Sincro.pdf',
+                image: { type: 'jpeg', quality: 1 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'px', format: [1123, 794], orientation: 'landscape' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // 4. DISPARO AUTOMÁTICO APÓS 2 SEGUNDOS
+        window.onload = function() {
+            setTimeout(baixarPDF, 2000);
+        };
+    </script>
+</body>
+</html>

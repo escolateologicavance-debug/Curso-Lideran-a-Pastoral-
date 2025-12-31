@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberação de Reteste - Faculdade Sincro</title>
+    <style>
+        :root { --azul-petroleo: #00334d; --branco: #ffffff; }
+        body { font-family: 'Times New Roman', serif; background: var(--azul-petroleo); color: var(--branco); margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { background: var(--branco); color: var(--azul-petroleo); padding: 40px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; max-width: 400px; width: 90%; }
+        h2 { text-transform: uppercase; letter-spacing: 2px; font-size: 22px; margin-bottom: 20px; border-bottom: 2px solid var(--azul-petroleo); padding-bottom: 10px; }
+        p { font-size: 16px; line-height: 1.5; margin-bottom: 25px; }
+        input[type="password"] { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; font-size: 18px; text-align: center; box-sizing: border-box; }
+        .btn-liberar { background: var(--azul-petroleo); color: var(--branco); border: none; padding: 15px 30px; font-size: 16px; font-weight: bold; text-transform: uppercase; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-liberar:hover { opacity: 0.9; }
+        #msgErro { color: #c62828; font-weight: bold; margin-top: 15px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Liberação de Reteste</h2>
+    <p>Insira a senha fornecida pelo suporte após a confirmação do seu pagamento.</p>
+    
+    <input type="password" id="senhaInput" placeholder="Digite a senha aqui">
+    
+    <button class="btn-liberar" onclick="verificarSenha()">Desbloquear Avaliação</button>
+    
+    <div id="msgErro">Senha incorreta. Verifique com o suporte.</div>
+</div>
+
+<script>
+    function verificarSenha() {
+        const senhaInserida = document.getElementById('senhaInput').value;
+        const msgErro = document.getElementById('msgErro');
+        
+        // A senha que você definiu: curso321A
+        if (senhaInserida === "curso321A") {
+            // Limpa o contador de tentativas do navegador do aluno
+            localStorage.removeItem('tent_lideranca');
+            
+            alert("Acesso liberado! Você será redirecionado para a avaliação.");
+            
+            // Envia o aluno de volta para a página da prova
+            window.location.href = "avaliacao.html"; 
+        } else {
+            msgErro.style.display = "block";
+            document.getElementById('senhaInput').value = "";
+        }
+    }
+</script>
+
+</body>
+</html>

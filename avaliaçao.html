@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Final - Faculdade Sincro</title>
+    <style>
+        :root { --azul-petroleo: #00334d; --branco: #ffffff; }
+        body { font-family: 'Times New Roman', serif; background: #f4f4f4; color: var(--azul-petroleo); margin: 0; padding: 0; }
+        header { background: var(--azul-petroleo); color: var(--branco); padding: 50px 20px; text-align: center; }
+        h1 { margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 3px; }
+        main { background: var(--branco); padding: 40px 10%; max-width: 900px; margin: 20px auto; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        .questao { margin-bottom: 35px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .pergunta { font-size: 19px; font-weight: bold; display: block; margin-bottom: 15px; line-height: 1.4; }
+        .opcoes { list-style: none; padding: 0; }
+        .opcoes li { margin-bottom: 12px; font-size: 17px; line-height: 1.6; }
+        input[type="radio"] { margin-right: 10px; transform: scale(1.2); cursor: pointer; }
+        .btn-finalizar { background: var(--azul-petroleo); color: var(--branco); border: none; padding: 20px 50px; font-size: 18px; font-weight: bold; text-transform: uppercase; cursor: pointer; width: 100%; }
+        #resultadoArea { margin-top: 20px; padding: 30px; border-radius: 8px; display: none; text-align: center; font-size: 18px; }
+        .erro-msg { background: #ffebee; color: #c62828; border: 1px solid #c62828; }
+        .parabens-msg { background: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; }
+        footer { text-align: center; padding: 20px; color: #777; }
+    </style>
+</head>
+<body>
+
+<header><h1>Avaliação: Liderança Pastoral</h1></header>
+
+<main>
+    <form id="quizForm">
+        <div class="questao">
+            <span class="pergunta">1. No exercício da liderança ministerial, a "autoridade delegada" deve ser compreendida como:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q1" value="0"> Um direito adquirido pelo tempo de serviço eclesiástico.</label></li>
+                <li><label><input type="radio" name="q1" value="1"> Uma função de mordomia sobre algo que pertence a Deus.</label></li>
+                <li><label><input type="radio" name="q1" value="0"> Um poder absoluto para decisões sem consulta à equipe.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">2. Qual a principal distinção entre "Liderar" e "Chefiar" no contexto da igreja?</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q2" value="0"> O chefe ouve a equipe, enquanto o líder decide sozinho.</label></li>
+                <li><label><input type="radio" name="q2" value="0"> Não há distinção técnica, ambos focam apenas em resultados.</label></li>
+                <li><label><input type="radio" name="q2" value="1"> O líder atrai pela visão e exemplo; o chefe impõe pelo cargo.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">3. O planejamento estratégico ministerial é essencial porque:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q3" value="1"> Atua como o trilho que permite que a visão avance com segurança.</label></li>
+                <li><label><input type="radio" name="q3" value="0"> Garante que não haja necessidade de intervenção divina.</label></li>
+                <li><label><input type="radio" name="q3" value="0"> É apenas uma burocracia para igrejas que têm muitos membros.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">4. Segundo o conselho de Jetro a Moisés (Êxodo 18), a seleção de líderes auxiliares foca em:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q4" value="0"> Pessoas com mais tempo livre para o trabalho voluntário.</label></li>
+                <li><label><input type="radio" name="q4" value="1"> Homens capazes, tementes a Deus e que aborreçam a avareza.</label></li>
+                <li><label><input type="radio" name="q4" value="0"> Apenas familiares próximos para garantir a confiança plena.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">5. O conceito de "Segurança Psicológica" no Projeto Aristóteles define que:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q5" value="1"> Equipes rendem mais quando podem expor ideias sem medo de punição.</label></li>
+                <li><label><input type="radio" name="q5" value="0"> O líder deve proteger a equipe de qualquer tipo de crítica externa.</label></li>
+                <li><label><input type="radio" name="q5" value="0"> A equipe deve ser formada apenas por pessoas que pensam igual.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">6. Na cultura Lean (Toyota), qual o papel principal do líder em relação aos executores?</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q6" value="0"> Cobrar metas diárias sem se envolver nos processos.</label></li>
+                <li><label><input type="radio" name="q6" value="0"> Realizar o trabalho no lugar dos liderados para garantir perfeição.</label></li>
+                <li><label><input type="radio" name="q6" value="1"> Servir ao executor, removendo obstáculos que impeçam o trabalho.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">7. A técnica do "Braintrust" (Pixar) prioriza feedbacks que são:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q7" value="0"> Elogios constantes para manter a autoestima elevada.</label></li>
+                <li><label><input type="radio" name="q7" value="1"> Honestos e focados no projeto, nunca ataques pessoais.</label></li>
+                <li><label><input type="radio" name="q7" value="0"> Sugestões genéricas que não firam os sentimentos do autor.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">8. Ser "irrepreensível" conforme 1 Timóteo 3 implica que o líder:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q8" value="1"> Possui uma conduta íntegra que não dá base para acusações reais.</label></li>
+                <li><label><input type="radio" name="q8" value="0"> É perfeito em todas as áreas e nunca comete erros de julgamento.</label></li>
+                <li><label><input type="radio" name="q8" value="0"> Nunca deve ser questionado por seus subordinados ou ovelhas.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">9. A transparência financeira (2 Coríntios 8:21) no ministério serve para:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q9" value="1"> Garantir honestidade diante de Deus e também dos homens.</label></li>
+                <li><label><input type="radio" name="q9" value="0"> Evitar que os membros da igreja peçam prestação de contas.</label></li>
+                <li><label><input type="radio" name="q9" value="0"> Apenas cumprir as obrigações fiscais do governo federal.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">10. Sobre o sigilo no gabinete pastoral, é correto afirmar:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q10" value="0"> Informações podem ser usadas no sermão se não citar nomes.</label></li>
+                <li><label><input type="radio" name="q10" value="1"> O sigilo é absoluto e essencial para a confiança no ministério.</label></li>
+                <li><label><input type="radio" name="q10" value="0"> Deve ser quebrado sempre que o pastor achar conveniente.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">11. A prudência digital do líder nas redes sociais deve ser guiada por:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q11" value="0"> Busca por curtidas e engajamento através de polêmicas.</label></li>
+                <li><label><input type="radio" name="q11" value="1"> Edificação e preservação da dignidade do cargo ministerial.</label></li>
+                <li><label><input type="radio" name="q11" value="0"> Exposição total da vida privada para gerar intimidade falsa.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">12. Qual a principal diferença entre crescimento saudável e inchaço ministerial?</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q12" value="1"> A presença de estruturas de cuidado e processos organizados.</label></li>
+                <li><label><input type="radio" name="q12" value="0"> Apenas a quantidade total de pessoas presentes no templo.</label></li>
+                <li><label><input type="radio" name="q12" value="0"> O valor total arrecadado mensalmente em dízimos e ofertas.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">13. A "Regra das Duas Pizzas" (Amazon) ensina que equipes pequenas:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q13" value="1"> São mais ágeis, eficientes e permitem melhor cuidado individual.</label></li>
+                <li><label><input type="radio" name="q13" value="0"> Devem ser evitadas para não sobrecarregar o pastor principal.</label></li>
+                <li><label><input type="radio" name="q13" value="0"> Servem apenas para ministérios que não pretendem crescer.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">14. O princípio bíblico de 1 Coríntios 14:40 estabelece que:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q14" value="0"> A espontaneidade deve anular qualquer tipo de organização.</label></li>
+                <li><label><input type="radio" name="q14" value="1"> Tudo na casa de Deus deve ser feito com ordem e decência.</label></li>
+                <li><label><input type="radio" name="q14" value="0"> A liturgia deve ser rígida e nunca mudar ao longo dos anos.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">15. Um ministério "escalável" é aquele capaz de:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q15" value="1"> Expandir sem colapsar a estrutura ou a saúde emocional do líder.</label></li>
+                <li><label><input type="radio" name="q15" value="0"> Concentrar todas as decisões nas mãos de um único indivíduo.</label></li>
+                <li><label><input type="radio" name="q15" value="0"> Manter-se estático para evitar riscos de conflitos internos.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">16. No Storytelling oratório, o uso de histórias serve para:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q16" value="1"> Conectar a audiência a verdades bíblicas de forma memorável.</label></li>
+                <li><label><input type="radio" name="q16" value="0"> Apenas entreter os ouvintes e tornar o culto menos cansativo.</label></li>
+                <li><label><input type="radio" name="q16" value="0"> Substituir a leitura direta da Palavra de Deus.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">17. Segundo Provérbios 15:1, a "resposta branda" tem o poder de:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q17" value="1"> Desviar o furor e pacificar situações de conflito intenso.</label></li>
+                <li><label><input type="radio" name="q17" value="0"> Demonstrar falta de autoridade diante dos opositores.</label></li>
+                <li><label><input type="radio" name="q17" value="0"> Encerrar a conversa sem resolver o problema de base.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">18. A "Regra dos 18 minutos" aplicada à comunicação pastoral foca em:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q18" value="1"> Concisão e manutenção do foco no ponto central da mensagem.</label></li>
+                <li><label><input type="radio" name="q18" value="0"> Limitar o tempo de oração durante as reuniões de liderança.</label></li>
+                <li><label><input type="radio" name="q18" value="0"> Rapidez excessiva para dispensar o público o quanto antes.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">19. Comunicar com eficácia no ministério exige do líder:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q19" value="1"> Respeito ao contexto cultural e à maturidade da audiência.</label></li>
+                <li><label><input type="radio" name="q19" value="0"> Uso obrigatório de palavras técnicas e teologia profunda.</label></li>
+                <li><label><input type="radio" name="q19" value="0"> Ignorar as diferenças geracionais para manter um padrão único.</label></li>
+            </ul>
+        </div>
+
+        <div class="questao">
+            <span class="pergunta">20. O autogerenciamento do líder envolve, prioritariamente:</span>
+            <ul class="opcoes">
+                <li><label><input type="radio" name="q20" value="1"> Gestão do tempo, saúde emocional e inteligência relacional.</label></li>
+                <li><label><input type="radio" name="q20" value="0"> Delegar todas as responsabilidades, inclusive o estudo bíblico.</label></li>
+                <li><label><input type="radio" name="q20" value="0"> Focar apenas nas demandas externas da comunidade e igreja.</label></li>
+            </ul>
+        </div>
+
+        <div id="resultadoArea"></div>
+
+        <div class="nav-footer">
+            <button type="button" id="btnFinalizar" class="btn-finalizar" onclick="calcularNota()">Finalizar Avaliação</button>
+        </div>
+    </form>
+</main>
+
+<script>
+    let tentativas = localStorage.getItem('tent_lideranca') || 0;
+
+    function calcularNota() {
+        const selecionadas = document.querySelectorAll('input[type="radio"]:checked');
+        if (selecionadas.length < 20) {
+            alert("Atenção! Você precisa responder todas as 20 questões para finalizar.");
+            return;
+        }
+
+        let pontos = 0;
+        selecionadas.forEach(res => { pontos += parseInt(res.value); });
+        const notaFinal = (pontos / 20) * 10;
+
+        tentativas++;
+        localStorage.setItem('tent_lideranca', tentativas);
+        const resDiv = document.getElementById('resultadoArea');
+        resDiv.style.display = "block";
+
+        if (notaFinal >= 7) {
+            resDiv.className = "parabens-msg";
+            resDiv.innerHTML = `
+                <h3>Excelente! Nota: ${notaFinal.toFixed(1)}</h3>
+                <p>Você atingiu o aproveitamento necessário para a qualificação.</p>
+                <button onclick="window.location.href='personalizar.html'" style="padding:15px; background:var(--azul-petroleo); color:white; border:none; width:100%; cursor:pointer; font-weight:bold; font-size:16px;">IR PARA EMISSÃO DE CERTIFICADO</button>`;
+            document.getElementById('btnFinalizar').style.display = "none";
+        } else {
+            resDiv.className = "erro-msg";
+            if (tentativas < 3) {
+                resDiv.innerHTML = `Nota: ${notaFinal.toFixed(1)}. Estude mais os materiais e tente novamente!`;
+            } else {
+                resDiv.innerHTML = `
+                    Limite de tentativas atingido.<br>
+                    <b>PIX: escolateologicavance@gmail.com</b><br>
+                    Liberação de Reteste (Senha: curso321A)<br><br>
+                    <a href="liberacao.html" style="color:#c62828; font-weight:bold;">JÁ PAGOU? CLIQUE AQUI PARA INSERIR SENHA</a>`;
+                document.getElementById('btnFinalizar').disabled = true;
+                document.getElementById('btnFinalizar').style.opacity = "0.5";
+            }
+        }
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+</script>
+
+<footer>Faculdade Sincro © 2025</footer>
+</body>
+</html>

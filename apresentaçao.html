@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liderança Pastoral - Faculdade Sincro</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        :root { 
+            --azul-petroleo: #00334d; 
+            --branco: #ffffff;
+            --cinza-claro: #f4f4f4;
+        }
+        
+        body { 
+            font-family: 'Times New Roman', serif; 
+            background: var(--cinza-claro); 
+            color: var(--azul-petroleo); 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+
+        /* Página Estilo PDF */
+        .document-page { 
+            background: var(--branco); 
+            width: 100%; 
+            max-width: 850px; 
+            min-height: 100vh; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        /* Faixa de Título Azul Petróleo Vazado */
+        header { 
+            background: var(--azul-petroleo); 
+            color: var(--branco); 
+            padding: 60px 20px; 
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 { 
+            margin: 0; 
+            font-size: 32px; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-weight: normal;
+        }
+
+        .sub-title { 
+            margin-top: 10px;
+            font-size: 16px; 
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* Conteúdo Acadêmico Espaçado */
+        main { 
+            padding: 60px 50px; 
+            flex-grow: 1;
+        }
+
+        h2 { 
+            border-bottom: 1px solid var(--azul-petroleo); 
+            padding-bottom: 15px; 
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        h3 { 
+            margin-top: 45px; 
+            font-size: 20px;
+            font-style: italic;
+        }
+
+        p { 
+            line-height: 2; /* Texto bem espaçado */
+            font-size: 18px; 
+            text-align: justify; 
+            margin-bottom: 30px;
+        }
+
+        /* Botão de Navegação Estilo PDF */
+        .nav-footer {
+            padding: 40px 50px;
+            text-align: right;
+        }
+
+        .btn-proximo { 
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--azul-petroleo);
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid var(--azul-petroleo);
+            transition: 0.3s;
+        }
+
+        .btn-proximo:hover {
+            background: var(--branco);
+            color: var(--azul-petroleo);
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 40px; 
+            font-size: 13px; 
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+
+        /* Ajuste para Telemóveis */
+        @media (max-width: 600px) {
+            main { padding: 40px 25px; }
+            h1 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="document-page">
+    <header>
+        <h1>Liderança Pastoral</h1>
+        <div class="sub-title">Faculdade Sincro | Qualificação Ministerial</div>
+    </header>
+
+    <main>
+        <section id="apresentacao">
+            <h2>Apresentação do Curso</h2>
+            <p>
+                O Curso de Liderança Pastoral da <b>Faculdade Sincro</b> foi desenvolvido para oferecer ferramentas práticas de gestão e cuidado ministerial. Em um cenário de constantes desafios eclesiásticos, este programa visa fortalecer a base operacional e relacional do pastor, permitindo que sua vocação seja exercida com maior organização e eficácia.
+            </p>
+
+            <h3>Objetivo</h3>
+            <p>
+                Capacitar pastores e líderes ministeriais para o suporte pastoral integral, oferecendo conhecimentos em Gestão Ministerial, Mediação de conflitos internos, aprimoramento da Comunicação bíblica e fortalecimento da Ética na vida pública e privada.
+            </p>
+
+            <h3>Importância</h3>
+            <p>
+                A liderança eficaz é o pilar de uma comunidade saudável. A importância deste curso reside na necessidade de profissionalizar o suporte pastoral sem perder a essência do cuidado. Um líder bem preparado minimiza crises, potencializa o crescimento de seus liderados e garante a longevidade do seu ministério.
+            </p>
+        </section>
+
+        <div class="nav-footer">
+            <a href="materia1.html" class="btn-proximo">INICIAR MATÉRIA 1</a>
+        </div>
+    </main>
+
+    <footer>
+        <b>Faculdade Sincro © 2025</b><br>
+        Amparo Legal: Constituição Federal, Art. 5º, VII e VIII.
+    </footer>
+</div>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
+</script>
+
+</body>
+</html>

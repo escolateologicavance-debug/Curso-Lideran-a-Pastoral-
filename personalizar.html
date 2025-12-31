@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados do Certificado - Faculdade Sincro</title>
+    <style>
+        :root { --azul: #00334d; --branco: #ffffff; }
+        body { font-family: 'Times New Roman', serif; background: #f4f4f4; color: var(--azul); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: var(--branco); padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 500px; text-align: center; }
+        h2 { text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid var(--azul); padding-bottom: 10px; }
+        .instrucao { margin: 20px 0; font-size: 18px; color: #555; }
+        input { width: 100%; padding: 15px; font-size: 18px; border: 2px solid var(--azul); border-radius: 4px; margin-bottom: 20px; box-sizing: border-box; }
+        .btn-prosseguir { background: var(--azul); color: var(--branco); border: none; padding: 15px 30px; font-size: 16px; font-weight: bold; text-transform: uppercase; cursor: pointer; width: 100%; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Parabéns!</h2>
+    <p class="instrucao">Digite abaixo o nome completo que deve constar no seu certificado oficial.</p>
+    
+    <input type="text" id="inputNome" placeholder="Nome Completo do Aluno">
+    
+    <button class="btn-prosseguir" onclick="salvarEDirecionar()">Gerar meu Certificado</button>
+</div>
+
+<script>
+    function salvarEDirecionar() {
+        const nome = document.getElementById('inputNome').value;
+        
+        if (nome.length < 3) {
+            alert("Por favor, digite seu nome completo.");
+            return;
+        }
+
+        // Salva o nome na "memória" do celular do aluno
+        localStorage.setItem('nome_certificado', nome);
+        
+        // Envia o aluno para a página do certificado que já criamos
+        window.location.href = "certificado_final.html";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="logo1-512.png">
+<link rel="apple-touch-icon" href="logo1-512.png">
+
+<meta name="theme-color" content="#00334d">
+<meta name="apple-mobile-web-app-status-bar-style" content="#00334d">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log("App Sincro Pronto!"))
+      .catch(err => console.log("Erro ao registrar:", err));
+  }
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liderança Pastoral - Faculdade Sincro</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root { --ouro: #c9a86a; --fundo: #0d1b2a; --card: #1b263b; }
+        body { font-family: 'Times New Roman', serif; background: var(--fundo); color: #ffffff; margin: 0; padding: 0; }
+        .wrapper { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 0; border-bottom: 2px solid var(--ouro); }
+        h1, h2 { color: var(--ouro); text-transform: uppercase; letter-spacing: 2px; }
+        section { background: var(--card); padding: 25px; margin: 20px 0; border: 1px solid rgba(201,168,106,0.3); }
+        .materia { border-left: 4px solid var(--ouro); padding-left: 15px; margin: 15px 0; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #0a1420; border: 1px solid var(--ouro); color: white; box-sizing: border-box; }
+        button { background: var(--ouro); color: var(--fundo); border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .faq-item { margin-bottom: 15px; font-size: 0.9em; }
+        footer { text-align: center; padding: 30px; font-size: 12px; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>Liderança Pastoral</h1>
+        <p>Faculdade Sincro | Qualificação Ministerial</p>
+    </header>
+
+    <section id="apresentacao">
+        <h2>Apresentação</h2>
+        <p>Este curso capacita o líder para suporte Pastoral.</p>
+    </section>
+
+    <section id="grade">
+        <h2>Grade Curricular</h2>
+        <div class="materia"><strong>Matéria 1:</strong> Fundamentos da Liderança Eficaz</div>
+        <div class="materia"><strong>Matéria 2:</strong> Gestão de Equipes e Ministérios</div>
+        <div class="materia"><strong>Matéria 3:</strong> Ética e Conduta Pastoral</div>
+        <div class="materia"><strong>Matéria 4:</strong> Estratégias de Crescimento e Organização</div>
+        <div class="materia"><strong>Matéria 5:</strong> Comunicação e Oratória Aplicada</div>
+    </section>
+
+    <section id="bibliografia">
+        <h2>Bibliografia e Créditos</h2>
+        <p>A bibliografia será baseada nos manuais e materiais de apoio fornecidos em cada matéria da grade curricular.</p>
+        <p><strong>Créditos:</strong> Faculdade Sincro - Teologia e Ciências Comportamentais.</p>
+    </section>
+
+    <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq-item"><strong>O curso emite certificado?</strong> Sim, o certificado é gerado automaticamente após o envio do feedback.</div>
+        <div class="faq-item"><strong>Para quem é o curso?</strong> Para pastores e líderes que buscam aprimoramento na gestão pastoral.</div>
+    </section>
+
+    <section id="feedback-area">
+        <h2>Feedback e Certificado</h2>
+        <p>Preencha os dados abaixo para enviar sua avaliação e gerar seu certificado em PDF dentro desta página.</p>
+        <form id="formCurso">
+            <input type="text" id="nomeAluno" placeholder="Nome Completo para o Certificado" required>
+            <textarea id="feedbackTexto" rows="4" placeholder="Sua opinião sobre o curso..." required></textarea>
+            <button type="button" onclick="finalizarCurso()">Enviar e Gerar Certificado</button>
+        </form>
+    </section>
+
+    <footer>
+        <b>Faculdade Sincro © 2025</b> - Todos os direitos reservados.<br>
+        Amparo Legal: Constituição Federal, Art. 5º, VII e VIII.
+    </footer>
+</div>
+
+<script>
+    async function finalizarCurso() {
+        const nome = document.getElementById('nomeAluno').value;
+        const feedback = document.getElementById('feedbackTexto').value;
+
+        if(!nome || !feedback) return alert("Por favor, preencha todos os campos!");
+
+        // Envio de Feedback via e-mail
+        const emailDestino = "faculdadeteologicasincro@gmail.com";
+        const assunto = encodeURIComponent("Feedback Curso Liderança: " + nome);
+        const corpo = encodeURIComponent("Nome do Aluno: " + nome + "\n\nFeedback:\n" + feedback);
+        window.location.href = `mailto:${emailDestino}?subject=${assunto}&body=${corpo}`;
+
+        // Geração do Certificado PDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'landscape' });
+
+        doc.setFillColor(13, 27, 42); 
+        doc.rect(0, 0, 297, 210, 'F');
+        doc.setDrawColor(201, 168, 106);
+        doc.setLineWidth(5);
+        doc.rect(10, 10, 277, 190);
+        
+        doc.setTextColor(201, 168, 106);
+        doc.setFontSize(35);
+        doc.text("CERTIFICADO DE CONCLUSÃO", 148, 60, { align: "center" });
+        
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(22);
+        doc.text("A FACULDADE SINCRO confere a", 148, 90, { align: "center" });
+        
+        doc.setFontSize(28);
+        doc.setTextColor(201, 168, 106);
+        doc.text(nome.toUpperCase(), 148, 115, { align: "center" });
+        
+        doc.setFontSize(18);
+        doc.setTextColor(255, 255, 255);
+        doc.text("A titulação de LIDERANÇA PASTORAL", 148, 145, { align: "center" });
+        doc.setFontSize(14);
+        doc.text("Concluído em 2025.", 148, 155, { align: "center" });
+
+        doc.setFontSize(10);
+        doc.text("Amparo Legal: Constituição Federal, Art. 5º, VII e VIII", 148, 185, { align: "center" });
+
+        doc.save(`Certificado_Lideranca_Pastoral_${nome}.pdf`);
+    }
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
+</script>
+</body>
+</html>
