@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaliacão Final - Faculdade Sincro</title>
+    <title>Avaliação Final - Faculdade Sincro</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="logo-512.png">
+    <link rel="apple-touch-icon" href="logo-512.png">
+    <meta name="theme-color" content="#00334d">
+
     <style>
         :root { --azul-petroleo: #00334d; --branco: #ffffff; }
         body { font-family: 'Times New Roman', serif; background: #f4f4f4; color: var(--azul-petroleo); margin: 0; padding: 0; }
@@ -24,21 +30,19 @@
 </head>
 <body>
 
-<header><h1>Avaliacão: Liderança Pastoral</h1></header>
+<header><h1>Avaliação: Liderança Pastoral</h1></header>
 
 <main>
     <form id="quizForm">
-        <div class="questao">
-            <span class="pergunta">1. No exercício da liderança ministerial, a "autoridade delegada" deve ser compreendida como:</span>
+        <div class="questao"><span class="pergunta">1. No exercício da liderança ministerial, a "autoridade delegada" deve ser compreendida como:</span>
             <ul class="opcoes">
                 <li><label><input type="radio" name="q1" value="0"> Um direito adquirido pelo tempo de serviço eclesiástico.</label></li>
                 <li><label><input type="radio" name="q1" value="1"> Uma função de mordomia sobre algo que pertence a Deus.</label></li>
                 <li><label><input type="radio" name="q1" value="0"> Um poder absoluto para decisões sem consulta à equipe.</label></li>
             </ul>
         </div>
-
-        <div class="questao">
-            <span class="pergunta">2. Qual a principal distinção entre "Liderar" e "Chefiar" no contexto da igreja?</span>
+        
+        <div class="questao"><span class="pergunta">2. Qual a principal distinção entre "Liderar" e "Chefiar" no contexto da igreja?</span>
             <ul class="opcoes">
                 <li><label><input type="radio" name="q2" value="0"> O chefe ouve a equipe, enquanto o líder decide sozinho.</label></li>
                 <li><label><input type="radio" name="q2" value="0"> Não há distinção técnica, ambos focam apenas em resultados.</label></li>
@@ -220,56 +224,51 @@
     let tentativas = localStorage.getItem('tent_lideranca') || 0;
 
     function calcularNota() {
-    function calcularNota() {
-    const selecionadas = document.querySelectorAll('input[type="radio"]:checked');
-    if (selecionadas.length < 20) {
-        alert("Responda todas as 20 questões antes de finalizar.");
-        return;
-    }
-
-    let pontos = 0;
-    selecionadas.forEach(res => { pontos += parseInt(res.value); });
-    const notaFinal = (pontos / 20) * 10;
-
-    tentativas++;
-    localStorage.setItem('tent_lideranca', tentativas);
-
-    const resDiv = document.getElementById('resultadoArea');
-    resDiv.style.display = "block";
-
-    if (notaFinal >= 7) {
-        // SUCESSO: Envia para personalizar.html
-        resDiv.className = "parabens-msg";
-        resDiv.innerHTML = `
-            <h3>Parabens! Sua nota foi ${notaFinal.toFixed(1)}</h3>
-            <p>Você foi aprovado na Qualificação Ministerial.</p>
-            <br>
-            <button type="button" onclick="window.location.href='personalizar.html'" 
-                style="padding:20px; background:#00334d; color:white; border:none; cursor:pointer; font-weight:bold; font-size:18px; width:100%;">
-                CLIQUE AQUI PARA PREENCHER SEU CERTIFICADO
-            </button>`;
-        document.getElementById('btnFinalizar').style.display = "none";
-    } else {
-        // ERRO: Mostra PIX e envia para liberacao.html
-        resDiv.className = "erro-msg";
-        if (tentativas >= 3) {
-            resDiv.innerHTML = `
-                Que pena! Você atingiu o limite de tentativas gratuitas.<br><br>
-                <b>Chave PIX: de R$20,00: escolateologicavance@gmail.com</b><br>
-                Envie o comprovante para liberação (Senha: curso321A)<br><br>
-                <button type="button" onclick="window.location.href='liberacao.html'"
-                    style="background:none; border:none; color:#c62828; font-weight:bold; cursor:pointer; text-decoration:underline;">
-                    JÁ PAGOU? CLIQUE AQUI PARA INSERIR A SENHA
-                </button>`;
-            document.getElementById('btnFinalizar').disabled = true;
-            document.getElementById('btnFinalizar').style.opacity = "0.5";
-        } else {
-            resDiv.innerHTML = `Nota: ${notaFinal.toFixed(1)}. Você ainda tem uma tentativa gratuita!`;
+        const selecionadas = document.querySelectorAll('input[type="radio"]:checked');
+        if (selecionadas.length < 20) {
+            alert("Responda todas as 20 questões antes de finalizar.");
+            return;
         }
-    }
-    window.scrollTo(0, document.body.scrollHeight);
-}
 
+        let pontos = 0;
+        selecionadas.forEach(res => { pontos += parseInt(res.value); });
+        const notaFinal = (pontos / 20) * 10;
+
+        tentativas++;
+        localStorage.setItem('tent_lideranca', tentativas);
+
+        const resDiv = document.getElementById('resultadoArea');
+        resDiv.style.display = "block";
+
+        if (notaFinal >= 7) {
+            resDiv.className = "parabens-msg";
+            resDiv.innerHTML = `
+                <h3>Parabéns! Sua nota foi ${notaFinal.toFixed(1)}</h3>
+                <p>Você foi aprovado na Qualificação Ministerial.</p>
+                <br>
+                <button type="button" onclick="window.location.href='personalizar.html'" 
+                    style="padding:20px; background:#00334d; color:white; border:none; cursor:pointer; font-weight:bold; font-size:18px; width:100%;">
+                    CLIQUE AQUI PARA PREENCHER SEU CERTIFICADO
+                </button>`;
+            document.getElementById('btnFinalizar').style.display = "none";
+        } else {
+            resDiv.className = "erro-msg";
+            if (tentativas >= 3) {
+                resDiv.innerHTML = `
+                    Que pena! Você atingiu o limite de tentativas gratuitas.<br><br>
+                    <b>Chave PIX de R$20,00: escolateologicavance@gmail.com</b><br>
+                    Envie o comprovante para liberação (Senha: curso321A)<br><br>
+                    <button type="button" onclick="window.location.href='liberacao.html'"
+                        style="background:none; border:none; color:#c62828; font-weight:bold; cursor:pointer; text-decoration:underline; font-size:16px;">
+                        JÁ PAGOU? CLIQUE AQUI PARA INSERIR A SENHA
+                    </button>`;
+                document.getElementById('btnFinalizar').disabled = true;
+                document.getElementById('btnFinalizar').style.opacity = "0.5";
+            } else {
+                resDiv.innerHTML = `Nota: ${notaFinal.toFixed(1)}. Você ainda tem uma tentativa gratuita!`;
+            }
+        }
+        window.scrollTo(0, document.body.scrollHeight);
     }
 </script>
 
