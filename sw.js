@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sincro-lideranca-v1';
+const CACHE_NAME = 'AVANCE-lideranca-v1';
 const assets = [
   'index.html',
   'avaliacao.html',
